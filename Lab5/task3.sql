@@ -1,4 +1,5 @@
 -- -- если еще не модифицирована
+-- alter table debtor_students
 -- add constraint unique_debt UNIQUE(surname, name, patronymic, group_id, debt_subject_id);
 
 insert into debtor_students (surname, name, patronymic, group_id, debt_subject_id)
