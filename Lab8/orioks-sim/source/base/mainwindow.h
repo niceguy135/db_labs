@@ -4,13 +4,14 @@
 #include <memory>
 #include <QMainWindow>
 #include <QStackedWidget>
-
 #include "login/loginform.h"
 #include "employee/teacher.h"
 #include "student/student.h"
 #include "employee/methodist.h"
 
 #include "base/user.h"
+
+#include "base/blockedwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +32,7 @@ private:
     Teacher *teacher_interface_;
     Student *student_interface_;
     Methodist *methodist_interface;
+    BlockedWindow *blocked_window;
 
     QStackedWidget *stackedWidget;
 

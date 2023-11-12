@@ -11,15 +11,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    initDatabaseInterfaces();
-
     // Stacked widget является скелетом приложения
     stackedWidget = new QStackedWidget();
+
+    initDatabaseInterfaces();
 
     stackedWidget->addWidget(login_form_);
     stackedWidget->addWidget(teacher_interface_);
     stackedWidget->addWidget(student_interface_);
     stackedWidget->addWidget(methodist_interface);
+    stackedWidget->addWidget(blocked_window);
 
     stackedWidget->setCurrentWidget(login_form_);
 
@@ -46,10 +47,15 @@ void MainWindow::initDatabaseInterfaces()
     login_form_ = new LoginForm();
     student_interface_ = new Student();
     methodist_interface = new Methodist();
+    blocked_window = new BlockedWindow(nullptr, stackedWidget, login_form_);
 }
 
 void MainWindow::logIn(User user)
 {
+    if (user.getBlockStatus()) {
+        stackedWidget->setCurrentWidget(blocked_window);
+        return;
+    }
     if (user.getAcessLevel() == User::teacher) {
         stackedWidget->setCurrentWidget(teacher_interface_);
         teacher_interface_->setCurrentUser(user);
@@ -61,6 +67,7 @@ void MainWindow::logIn(User user)
         student_interface_->setCurrentUser(user);
         stackedWidget->setCurrentWidget(student_interface_);
     }
+
 }
 
 

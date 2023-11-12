@@ -46,3 +46,14 @@ QString User::getFullUsername()
 
 }
 
+void User::checkBlock(){
+    QSqlQuery block_query;
+    if(!block_query.prepare("SELECT is_blocked FROM users WHERE login = " + QString::number(user_id_)))
+        qDebug() << "Bad query!";
+
+    block_query.exec();
+    block_query.next();
+    QString result = block_query.value(0).toString();
+
+    is_blocked = result.contains("f", Qt::CaseInsensitive) ? false : true;
+}

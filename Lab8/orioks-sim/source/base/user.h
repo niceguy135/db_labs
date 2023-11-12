@@ -20,6 +20,8 @@ public:
     void setFullname(QString name, QString surname, QString patronymic);
     void setUserId(int user_id);
     void setAcessLevel(AcessLevel level);
+    void checkBlock();
+    bool getBlockStatus(){return this->is_blocked;};
 
     AcessLevel getAcessLevel() {return this->acess_level_;};
     int getUserId() {return this->user_id_;};
@@ -31,6 +33,7 @@ private:
     QString name_{};
     QString surname_{};
     QString patronymic_{};
+    bool is_blocked;
     // std::map<QString, QString> user_subjects_;
 };
 

@@ -66,6 +66,8 @@ void LoginForm::authoriseRequested()
             current_user_.setUserId((ui->login_edit->text()).toInt());
             current_user_.setAcessLevel(static_cast<User::AcessLevel>(login_query.value(1).toInt()));
 
+            current_user_.checkBlock();
+
             // Получаю уровень доступа учетной записи
             // current_user_.acess_level = static_cast<User::AcessLevel>(login_query.value(1).toInt());
 
