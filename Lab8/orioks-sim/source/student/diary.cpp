@@ -122,21 +122,24 @@ void Diary::searchBySubject()
                     "ON Field_comprehension.field = Field.field_id "
                     "where student_id =" + QString::number(current_student_.getUserId()); // + " AND field_name = '" + QString(ui->search_line->text()) + "'";
 
-    if(!fields_list.isEmpty()){
+    if(!fields_list.isEmpty() && QString::compare(fields_list.first(),"")){
         query += " AND field_name IN (''";
         for( const QString& field : fields_list ){
             query += ",";
             query += "'" + field + "'";
         }
         query += ")";
-        QTextStream(stdout) << query << Qt::endl;
 
-        search_query.exec(query);
-        if (search_query.size() == 0) {
-            ui->search_line->clear();
-            ui->search_line->setPlaceholderText("Предметы не найдены!");
+        if(Diary::is_SQL_injection(fields_list)){
+            qDebug() << "SQL injection!!!";
         } else {
-            fillDiaryMarks(std::move(search_query));
+            search_query.exec(query);
+            if (search_query.size() == 0) {
+                ui->search_line->clear();
+                ui->search_line->setPlaceholderText("Предметы не найдены!");
+            } else {
+                fillDiaryMarks(std::move(search_query));
+            }
         }
 
     } else {
@@ -151,3 +154,16 @@ void Diary::textEdited()
     ui->search_line->setPlaceholderText(" ");
 }
 
+bool Diary::is_SQL_injection(QStringList &user_query){
+    QStringList bad_expressions = (QStringList() << "SELECT" << "UPDATE" << "ALTER" << "SHOW" << "DROP" << "INSERT" << "CREATE");
+
+    for(const QString& expr : bad_expressions){
+        for(const QString& query : user_query){
+            if(query.contains(expr, Qt::CaseInsensitive)){
+                return true;
+            }
+        }
+    }
+
+    return false;
+}

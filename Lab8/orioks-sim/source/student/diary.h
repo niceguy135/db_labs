@@ -30,6 +30,8 @@ private slots:
 private:
     Ui::Diary *ui;
     User current_student_;
+
+    static bool is_SQL_injection(QStringList &user_query);
     //int student_id_;
 
 };
