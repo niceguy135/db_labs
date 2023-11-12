@@ -57,3 +57,14 @@ void User::checkBlock(){
 
     is_blocked = result.contains("f", Qt::CaseInsensitive) ? false : true;
 }
+
+void User::blockCheater(){
+    QSqlQuery block_query;
+    if(!block_query.prepare("UPDATE users SET is_blocked = true WHERE login =" + QString::number(user_id_)))
+        qDebug() << "Bad query!";
+
+    if(!block_query.exec()){
+        qDebug() << "I cant block cheater!";
+    }
+
+}

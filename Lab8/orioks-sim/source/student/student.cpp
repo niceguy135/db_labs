@@ -1,13 +1,13 @@
 #include "student.h"
 #include "ui_student.h"
 
-Student::Student(QWidget *parent) :
+Student::Student(QWidget *parent, QStackedWidget *stack, QWidget *block) :
     QWidget(parent),
     ui(new Ui::Student)
 {
     ui->setupUi(this);
 
-    diary_ = new Diary();
+    diary_ = new Diary(nullptr, stack, block);
     // Добавляю в список виджетов:
     ui->stackedWidget->addWidget(diary_);
     ui->stackedWidget->setCurrentWidget(diary_);

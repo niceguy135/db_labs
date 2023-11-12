@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QStackedWidget>
 #include "base/user.h"
 
 #include <QSqlQuery>
@@ -16,7 +17,7 @@ class Diary : public QWidget
     Q_OBJECT
 
 public:
-    explicit Diary(QWidget *parent = nullptr);
+    explicit Diary(QWidget *parent = nullptr, QStackedWidget *stack = nullptr, QWidget *block = nullptr);
     ~Diary();
 
     void setStudent(User user);
@@ -30,6 +31,8 @@ private slots:
 private:
     Ui::Diary *ui;
     User current_student_;
+    QStackedWidget *mainWidgetStack;
+    QWidget *blockForm;
 
     static bool is_SQL_injection(QStringList &user_query);
     //int student_id_;

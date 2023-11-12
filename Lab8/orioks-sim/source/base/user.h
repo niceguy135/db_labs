@@ -5,6 +5,8 @@
 #include <QString>
 #include <vector>
 #include <map>
+#include <QWidget>
+#include <QStackedWidget>
 
 class User
 {
@@ -22,6 +24,7 @@ public:
     void setAcessLevel(AcessLevel level);
     void checkBlock();
     bool getBlockStatus(){return this->is_blocked;};
+    void blockCheater();
 
     AcessLevel getAcessLevel() {return this->acess_level_;};
     int getUserId() {return this->user_id_;};

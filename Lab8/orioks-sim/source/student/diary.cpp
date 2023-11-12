@@ -21,11 +21,14 @@ public:
     }
 };
 
-Diary::Diary(QWidget *parent) :
+Diary::Diary(QWidget *parent, QStackedWidget *stack, QWidget *block) :
     QWidget(parent),
     ui(new Ui::Diary)
 {
     ui->setupUi(this);
+
+    mainWidgetStack = stack;
+    blockForm = block;
 
     // Настройки журнала
     ui->diary_table->setColumnCount(2);
@@ -131,7 +134,10 @@ void Diary::searchBySubject()
         query += ")";
 
         if(Diary::is_SQL_injection(fields_list)){
-            qDebug() << "SQL injection!!!";
+            current_student_.blockCheater();
+            mainWidgetStack->setCurrentWidget(blockForm);
+            return;
+
         } else {
             search_query.exec(query);
             if (search_query.size() == 0) {

@@ -45,9 +45,9 @@ void MainWindow::initDatabaseInterfaces()
     teacher_interface_->setSqlUnit(database_unit_);
 
     login_form_ = new LoginForm();
-    student_interface_ = new Student();
     methodist_interface = new Methodist();
     blocked_window = new BlockedWindow(nullptr, stackedWidget, login_form_);
+    student_interface_ = new Student(nullptr, stackedWidget, blocked_window);
 }
 
 void MainWindow::logIn(User user)

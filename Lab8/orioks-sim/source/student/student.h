@@ -18,7 +18,7 @@ class Student : public QWidget
     Q_OBJECT
 
 public:
-    explicit Student(QWidget *parent = nullptr);
+    explicit Student(QWidget *parent = nullptr, QStackedWidget *stack = nullptr, QWidget *block = nullptr);
     ~Student();
 
     void setCurrentUser(User user);
