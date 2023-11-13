@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     initDatabaseInterfaces();
 
+    stackedWidget->addWidget(admin);
     stackedWidget->addWidget(login_form_);
     stackedWidget->addWidget(teacher_interface_);
     stackedWidget->addWidget(student_interface_);
@@ -44,6 +45,7 @@ void MainWindow::initDatabaseInterfaces()
     teacher_interface_ = new Teacher();
     teacher_interface_->setSqlUnit(database_unit_);
 
+    admin = new AdministratorWidget();
     login_form_ = new LoginForm();
     methodist_interface = new Methodist();
     blocked_window = new BlockedWindow(nullptr, stackedWidget, login_form_);
@@ -56,7 +58,9 @@ void MainWindow::logIn(User user)
         stackedWidget->setCurrentWidget(blocked_window);
         return;
     }
-    if (user.getAcessLevel() == User::teacher) {
+    if(user.getAcessLevel() == User::admin) {
+        stackedWidget->setCurrentWidget(admin);
+    } else if (user.getAcessLevel() == User::teacher) {
         stackedWidget->setCurrentWidget(teacher_interface_);
         teacher_interface_->setCurrentUser(user);
         teacher_interface_->initSubjectsList();

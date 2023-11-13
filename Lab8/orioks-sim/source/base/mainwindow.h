@@ -8,6 +8,7 @@
 #include "employee/teacher.h"
 #include "student/student.h"
 #include "employee/methodist.h"
+#include "administratorwidget.h"
 
 #include "base/user.h"
 
@@ -28,6 +29,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
+    AdministratorWidget *admin;
     LoginForm *login_form_;
     Teacher *teacher_interface_;
     Student *student_interface_;

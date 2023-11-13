@@ -23,13 +23,17 @@ LoginForm::LoginForm(QWidget *parent) :
 //     ui->login_edit->setText("81007");
 //     ui->password_edit->setText("123456");
 
-    // Student:
+//    // Student:
     ui->login_edit->setText("856271");
     ui->password_edit->setText("2001-06-03");
 
     // Methodist:
    //  ui->login_edit->setText("90010");
    //  ui->password_edit->setText("123456");
+
+    // Admin
+//    ui->login_edit->setText("8200390");
+//    ui->password_edit->setText("123456");
 }
 
 LoginForm::~LoginForm()

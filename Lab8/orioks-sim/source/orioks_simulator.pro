@@ -14,6 +14,7 @@ QMAKE_LFLAGS += -Wl,-rpath,/usr/lib/x86_64-linux-gnu
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    administratorwidget.cpp \
     base/blockedwindow.cpp \
     employee/debtorsmoderation.cpp \
     employee/subjectsmoderation.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
     base/user.cpp
 
 HEADERS += \
+    administratorwidget.h \
     base/blockedwindow.h \
     base/subject.h \
     employee/debtorsmoderation.h \
@@ -71,6 +73,7 @@ HEADERS += \
     base/user.h
 
 FORMS += \
+    administratorwidget.ui \
     base/blockedwindow.ui \
     employee/debtors.ui \
     employee/debtorsjournal.ui \

@@ -14,7 +14,7 @@ public:
     User();
 
     enum AcessLevel {
-        student, teacher, methodist
+        student, teacher, methodist, admin = 666
     };
 
     AcessLevel acess_level_;
